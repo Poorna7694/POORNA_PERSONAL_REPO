@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Query;
 
@@ -44,12 +45,6 @@ namespace Contact_Pre_Valdiation
                 if (uiContact != null)
                 {
                     #region Reading FE Data
-
-                    if (!uiContact.Contains("firstname") || uiContact["firstname"] == null)
-
-                        throw new InvalidPluginExecutionException("FIRST NAME Is missing Please Provide");
-                    if (!uiContact.Contains("lastname") || uiContact["lastname"] == null)
-                        return;
 
                     if (!uiContact.Contains("emailaddress1") || uiContact["emailaddress1"] == null)
 
