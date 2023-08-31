@@ -51,21 +51,22 @@ namespace Contact_Pre_Valdiation
                         return;
 
                     if (!uiContact.Contains("emailaddress1") || uiContact["emailaddress1"] == null)
-
                         throw new InvalidPluginExecutionException("Email Id Is missing Please Provide");
-                    string fname = uiContact.GetAttributeValue<string>("firstname");
+                    else
+                    {
+                        string fname = uiContact.GetAttributeValue<string>("firstname");
 
-                    string lname = (string)uiContact["lastname"];
+                        string lname = (string)uiContact["lastname"];
 
-                    string email = uiContact.GetAttributeValue<string>("emailaddress1");
+                        string email = uiContact.GetAttributeValue<string>("emailaddress1");
 
-                    trace.Trace("First Name is " + email);
+                        trace.Trace("First Name is " + email);
 
-                    #endregion
+                        #endregion
 
-                    #region Business Logic Starts From Here
+                        #region Business Logic Starts From Here
 
-                    string query = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
+                        string query = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
                         <entity name='contact'>
                      <attribute name='fullname' />
                       <attribute name='telephone1' />
@@ -77,11 +78,12 @@ namespace Contact_Pre_Valdiation
                          </entity>
                          </fetch>";
 
-                    EntityCollection contactList = service.RetrieveMultiple(new FetchExpression(query));
+                        EntityCollection contactList = service.RetrieveMultiple(new FetchExpression(query));
 
-                    trace.Trace("We Found These Many Contacts" + contactList.Entities.Count + " With This Email Id is " + email);
-                    if (contactList.Entities.Count > 0)
-                        throw new InvalidPluginExecutionException("Email Id Is Already Existed  Please Provide Another One");
+                        trace.Trace("We Found These Many Contacts" + contactList.Entities.Count + " With This Email Id is " + email);
+                        if (contactList.Entities.Count > 0)
+                            throw new InvalidPluginExecutionException("Email Id Is Already Existed  Please Provide Another One");
+                    }
 
                     #endregion
 
