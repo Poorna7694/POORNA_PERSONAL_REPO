@@ -37,7 +37,6 @@ namespace Contact_Pre_Valdiation
 
             trace.Trace("All Valdiations Success .... going to try block");
             #endregion
-
             try
             {
                 Entity uiContact = (Entity)context.InputParameters["Target"] as Entity;
